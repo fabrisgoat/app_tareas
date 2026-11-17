@@ -142,6 +142,27 @@
   $('list-view').addEventListener('click', onTaskClick);
   $('day-tasks').addEventListener('click', onTaskClick);
 
+  // Tema claro/oscuro
+  const THEME_KEY = 'tareas-tema';
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function currentTheme() {
+    return document.documentElement.dataset.theme || (mq.matches ? 'dark' : 'light');
+  }
+  function paintToggle() {
+    $('theme-toggle').textContent = currentTheme() === 'dark' ? '☀️' : '🌙';
+  }
+  try {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+  } catch {}
+  $('theme-toggle').addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem(THEME_KEY, next); } catch {}
+    paintToggle();
+  });
+  paintToggle();
+
   setInterval(() => { if (view === 'list') renderList(); }, 60000); // actualiza "vencidas"
 
   resetForm();

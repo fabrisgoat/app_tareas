@@ -3,11 +3,17 @@
   --border: #dfe2ec; --accent: #4f46e5; --danger: #dc2626; --ok: #16a34a;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #14161f; --card: #1e2130; --text: #e8eaf2; --muted: #9aa0b8;
     --border: #2f3347; --accent: #818cf8; --danger: #f87171; --ok: #4ade80;
   }
 }
+:root[data-theme="dark"] {
+  --bg: #14161f; --card: #1e2130; --text: #e8eaf2; --muted: #9aa0b8;
+  --border: #2f3347; --accent: #818cf8; --danger: #f87171; --ok: #4ade80;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+#theme-toggle { font-size: 1.1rem; line-height: 1; padding: 6px 10px; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.4 system-ui, sans-serif; }
 .app { max-width: 720px; margin: 0 auto; padding: 16px; }
