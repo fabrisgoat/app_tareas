@@ -2,6 +2,7 @@
   'use strict';
   const KEY = 'tareas-programadas-v1';
   const $ = (id) => document.getElementById(id);
+  const TAGS = { facil: 'Fácil', media: 'Media', dificil: 'Difícil' };
 
   let tasks = load();
   let view = 'list';
@@ -30,7 +31,7 @@
     return `<div class="task${t.done ? ' done' : ''}${overdue ? ' overdue' : ''}" data-id="${t.id}">
       <input type="checkbox" data-act="toggle" ${t.done ? 'checked' : ''} aria-label="Completada">
       <div class="t-body">
-        <div class="t-title">${esc(t.title)}</div>
+        <div class="t-title">${esc(t.title)}${TAGS[t.complexity] ? `<span class="tag ${t.complexity}">${TAGS[t.complexity]}</span>` : ''}</div>
         <div class="t-meta">${esc(fmtDate(t.date))}${t.time ? ' · ' + esc(t.time) : ''}${overdue ? ' · vencida' : ''}</div>
         ${t.notes ? `<div class="t-notes">${esc(t.notes)}</div>` : ''}
       </div>
@@ -95,6 +96,7 @@
     const data = {
       title: $('title').value.trim(), date: $('date').value,
       time: $('time').value, notes: $('notes').value.trim(),
+      complexity: $('complexity').value,
     };
     if (!data.title || !data.date) return;
     const id = $('task-id').value;
@@ -133,6 +135,7 @@
     else if (act.dataset.act === 'edit') {
       $('task-id').value = t.id; $('title').value = t.title; $('date').value = t.date;
       $('time').value = t.time; $('notes').value = t.notes;
+      $('complexity').value = t.complexity || '';
       $('submit-btn').textContent = 'Guardar cambios'; $('cancel-btn').hidden = false;
       $('title').focus(); window.scrollTo({ top: 0, behavior: 'smooth' });
       return;

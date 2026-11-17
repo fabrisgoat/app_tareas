@@ -24,7 +24,11 @@ button { font: inherit; cursor: pointer; border: 1px solid var(--border); backgr
 button.primary, .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 form { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin: 12px 0; display: grid; gap: 10px; }
 label { display: grid; gap: 4px; font-size: .85rem; color: var(--muted); flex: 1; }
-input, textarea { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px; width: 100%; }
+.tag { display: inline-block; font-size: .72rem; font-weight: 600; border: 1px solid currentColor; border-radius: 999px; padding: 0 8px; margin-left: 6px; vertical-align: middle; }
+.tag.facil { color: #16a34a; }
+.tag.media { color: #d97706; }
+.tag.dificil { color: #dc2626; }
+input, select, textarea { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px; width: 100%; }
 .row { display: flex; gap: 10px; }
 .actions { justify-content: flex-start; }
 h2.group { font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 18px 0 6px; }
