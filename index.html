@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programador de Tareas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Programador de tareas</h1>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-view="list" role="tab">Lista</button>
+        <button class="tab" data-view="calendar" role="tab">Calendario</button>
+      </div>
+    </header>
+
+    <form id="task-form" autocomplete="off">
+      <input type="hidden" id="task-id">
+      <label>Título
+        <input type="text" id="title" required maxlength="120" placeholder="¿Qué hay que hacer?">
+      </label>
+      <div class="row">
+        <label>Fecha <input type="date" id="date" required></label>
+        <label>Hora <input type="time" id="time"></label>
+      </div>
+      <label>Notas
+        <textarea id="notes" rows="2" maxlength="500"></textarea>
+      </label>
+      <div class="row actions">
+        <button type="submit" id="submit-btn" class="primary">Añadir tarea</button>
+        <button type="button" id="cancel-btn" hidden>Cancelar edición</button>
+      </div>
+    </form>
+
+    <section id="list-view"></section>
+
+    <section id="calendar-view" hidden>
+      <div class="cal-nav">
+        <button id="prev-month" aria-label="Mes anterior">‹</button>
+        <h2 id="month-label"></h2>
+        <button id="next-month" aria-label="Mes siguiente">›</button>
+      </div>
+      <div id="calendar-grid" class="cal-grid"></div>
+      <h3 id="day-label"></h3>
+      <div id="day-tasks"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
